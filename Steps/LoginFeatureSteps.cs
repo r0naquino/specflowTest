@@ -53,5 +53,12 @@ namespace SpecFlowProject.Steps
             Assert.IsTrue(homePage.VerifyIfHomePageIsLoaded(), $"Home page is not displayed for Test Case {scenarioContext.ScenarioInfo.Title}");
         }
 
+        [Given(@"the user is logged in with (.*) username and (.*) password")]
+        public void GivenTheUserIsLoggedInWithUsernameAndPassword(string username, string password)
+        {
+            loginPage = basePage.GoToLoginPage();
+            homePage = loginPage.InputUsernameAndPassword(username, password);
+            scenarioContext.Add("home", homePage);
+        }
     }
 }
